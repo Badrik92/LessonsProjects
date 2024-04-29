@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.silent.example_2_task_manager.ui.theme.Example_2_Task_ManagerTheme
 
@@ -30,7 +31,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    ShowTaskApp()
                 }
             }
         }
@@ -38,10 +39,19 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun TascApp(
+fun ShowTaskApp() {
+    TaskApp(
+        imagePainter = painterResource(id = R.drawable.ic_task_completed),
+        firstText = stringResource(id = R.string.first_text),
+        secondText = stringResource(id = R.string.second_text)
+    )
+}
+
+@Composable
+fun TaskApp(
     imagePainter: Painter,
     firstText: String,
-    secondText: String
+    secondText: String,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -52,11 +62,11 @@ fun TascApp(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_task_completed),
+            painter = imagePainter,
             contentDescription = null
         )
-        Text(text = "All tasks completed")
-        Text(text = "Nice work")
+        Text(text = firstText)
+        Text(text = secondText)
     }
 }
 
@@ -64,6 +74,6 @@ fun TascApp(
 @Composable
 fun GreetingPreview() {
     Example_2_Task_ManagerTheme {
-        Greeting("Android")
+
     }
 }
